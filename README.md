@@ -1,33 +1,46 @@
-# Project
+# Spline Positional Encoding
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains the code for our paper published in IJCAI 2021:
+- [Spline Positional Encoding for Learning 3D Implicit Signed Distance Fields](https://arxiv.org/abs/2106.01553)
+- Peng-Shuai Wang, Yang Liu, Yu-Qi Yang, and Xin Tong
 
-As the maintainer of this project, please make a few updates:
+## Install
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+The code has been tested on Ubuntu 16.04/18.04, please follow the following instructions to install the requirements.
 
-## Contributing
+```bash
+  conda create --name spe python=3.7
+  conda activate spe
+  conda install  pytorch==1.5.0 torchvision==0.6.0 cudatoolkit=10.2 -c pytorch
+  pip install -r requirements.txt
+```
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+## Data
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+For the task of SDF reconstruction from a point cloud, SDF regression and image regression, please download the data from this [link](https://www.dropbox.com/s/b2ow4b5ahsr5wqg/data.zip?dl=0) and then unzip it to the folder `data`.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+For the shape space learning, please download the data from the official website of [Dfaust](http://dfaust.is.tue.mpg.de/downloads), and extract the meshes with the code provided by Dfaust to the target folder, denoted as `<dfaust_folder>`.
+Then download the training and testing data list file from this [link](https://www.dropbox.com/s/cmd311jfhzjbfk7/dfaust.zip?dl=0) and unzip the list file to the folder `data`.
+After these 2 steps, run the following command to generate the data for training and testing: `python scripts/dfaust.py  --root_folder <dfaust_folder>`
 
-## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+## Tasks
+
+### Reconstruct SDFs from a point cloud
+- Run the following command: `bash scripts/run_train_sdf.sh`
+
+
+### Regress images
+- Run the following command: `python scripts/run_regress_img.py`
+<!-- The figure in our paper is `div2k_002` -->
+
+
+### Regress SDFs
+- Run the following command: `bash scripts/run_regress_sdf.sh`
+
+
+### Train SDF Space
+- Run the following command: `bash scripts/run_shape_space.sh`.
+  The training process is relatively slow, we provide the trained weights [here](https://www.dropbox.com/s/keoq8ni752gdbi0/our_all_c33_dfaust_final.pth?dl=0).
+
+- Run the following command to test the trained shape space: `python scripts/run_sdf_space_test.py`

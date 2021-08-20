@@ -1,0 +1,17 @@
+*.mp4
+*.xyz
+*.png
+*.bmp
+*.wav
+*.npy
+*.pth
+*.pt
+*.ply
+*.txt
+*.npz
+*.obj
+__pycache__
+.vscode
+logs
+data
+results
