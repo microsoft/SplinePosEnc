@@ -7,7 +7,6 @@
 *.pth
 *.pt
 *.ply
-*.txt
 *.npz
 *.obj
 __pycache__

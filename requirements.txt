@@ -1,0 +1,10 @@
+torch>=1.5.0
+torchvision>=0.6.0
+imageio
+tqdm
+yacs
+tensorboard
+matplotlib
+scikit-image
+trimesh
+scipy
