@@ -41,7 +41,7 @@ for line in tqdm(lines, ncols=80):
           'DATA.train.normalize', 'False',
           'SOLVER.gpu', '0,',
           'SOLVER.logdir', logdir,
-          'SOLVER.num_epochs', '400',
+          'SOLVER.num_epochs', '600',
           'SOLVER.alias', line,
           'SOLVER.test_every_epoch', '20',
           'SOLVER.ckpt', ckpt]
